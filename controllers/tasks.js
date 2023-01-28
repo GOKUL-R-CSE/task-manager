@@ -35,9 +35,11 @@ const updateTask = async (req, res) => {
 
         const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
             new: true, runValidators: true
-        })
-    } catch (error) {
 
+        })
+        res.status(200).json({ task })
+    } catch (error) {
+        res.status(500).json({ msg: error })
     }
 }
 const deleteTask = async (req, res) => {
